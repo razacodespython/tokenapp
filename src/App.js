@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import { ThirdwebProvider, ConnectWallet } from '@3rdweb/react';
 
-function App() {
+import './App.css';
+//import ListMynft from './wallet copy';
+//import  Component  from './wallet';
+//import myListingsMarket from './listings';
+import TokenComponent from './tokencomponent';
+
+//import ListMarketButton from './ListMarketButton';
+//import TokenComponent from './tokencomponent';
+const supportedChainIds = [1, 4, 137, 250, 43114, 80001];
+
+const connectors = {
+  injected: {},
+  magic: {
+
+  },
+  walletconnect: {},
+  walletlink: {
+    appName: "thirdweb - demo",
+    url: "https://thirdweb.com",
+    darkMode: false,
+  },
+};
+
+
+function ExampleApp() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThirdwebProvider
+      connectors={connectors}
+      supportedChainIds={supportedChainIds}
+    >
+      <ConnectWallet />
+      {/* <ListMarketButton />
+      <Component /> */}
+      <TokenComponent />
+    </ThirdwebProvider>
   );
 }
 
-export default App;
+export default ExampleApp;
